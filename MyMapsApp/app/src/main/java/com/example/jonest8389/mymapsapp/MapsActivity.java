@@ -88,7 +88,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         if ((ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) ||
                 (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)) {
-            mMap.setMyLocationEnabled(true);
+            mMap.setMyLocationEnabled(false);
 
         locationSearch = (EditText) findViewById(R.id.editText_addr);
         }
@@ -152,7 +152,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 for (int i = 0;i < addressList.size(); i++){
                     Address address = addressList.get(i);
                     LatLng latlng = new LatLng(address.getLatitude(),address.getLongitude());
-                    mMap.addMarker(new MarkerOptions().position(latlng).title(i + ": " + address.getSubThoroughfare()));
+                    mMap.addMarker(new MarkerOptions().position(latlng).title(i + ": " + address.getSubThoroughfare() + " " + address.getThoroughfare() + ", " + address.getLocality() + " " + address.getAdminArea()));
                     Log.d("MyMapsApp","onSearch: added marker at address " + i + " (" + address.getSubThoroughfare() + ")");
                     mMap.animateCamera(CameraUpdateFactory.newLatLng(latlng));
                 }
